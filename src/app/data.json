@@ -1,0 +1,21 @@
+{
+  "tweets" : {
+    "tweet01" : {
+      "displayName" : "ando_ta",
+      "message" : "testtesttest",
+      "uid" : "BOL4gYwK6ZPHYJVu4Ifnvn16Ty53"
+    },
+    "tweet02" : {
+      "displayName" : 2,
+      "message" : "testtesttest",
+      "uid" : "aaaaaaaaaa"
+    }
+  },
+  "users" : {
+    "userBOL4gYwK6ZPHYJVu4Ifnvn16Ty53" : {
+      "displayName" : "ando_ta",
+      "uid" : "BOL4gYwK6ZPHYJVu4Ifnvn16Ty53"
+    }
+  }
+}
+// JSONオブジェクトのデータ構造としては、ネストが深くならないようにする。
