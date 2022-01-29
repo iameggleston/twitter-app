@@ -12,13 +12,13 @@ import { getDatabase } from "firebase/database";
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyAEu4LITj0BUYwl-wYFBopjFmwrijpCwiY",
-  authDomain: "twitter-app-99e4a.firebaseapp.com",
-  projectId: "twitter-app-99e4a",
-  storageBucket: "twitter-app-99e4a.appspot.com",
-  messagingSenderId: "968948731625",
-  appId: "1:968948731625:web:35896b86c7d1586829aa78",
-  measurementId: "G-YPHJ6QRWX9"
+  apiKey: process.env.REACT_APP_FIREBASE_APIKEY,
+  authDomain: process.env.REACT_APP_FIREBASE_DOMAIN,
+  databaseURL: process.env.REACT_APP_FIREBASE_DATABASE,
+  projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.REACT_APP_FIREBASE_SENDER_ID,
+  appId: process.env.REACT_APP_FIREBASE_APP_ID,
 };
 
 // Initialize Firebase
