@@ -1,37 +1,18 @@
 import React, { useState, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
 import { userValue } from 'redux/userSlice';
 import { loadData, feedValue, UserState } from 'redux/feedSlice';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
-import { useAppDispatch } from 'app/hooks';
+import { useAppDispatch, useAppSelector } from 'app/hooks';
 import { logout } from 'redux/feedSlice';
 
 export default function TimeLine() {
   // userValueをパラメーターにしないで、　storeのstateを取得する方法はないのか
 
-  const state = {
-    "tweets" : {
-      "tweet01" : {
-        "displayName" : "ando_ta",
-        "message" : "testtesttest",
-        "uid" : "BOL4gYwK6ZPHYJVu4Ifnvn16Ty53"
-      },
-      "tweet02" : {
-        "displayName" : 2,
-        "message" : "testtesttest",
-        "uid" : "aaaaaaaaaa"
-      },
-      "tweet03" : {
-        "displayName" : "ddd"
-      }
-    }
-  }
+  const state = useAppSelector(feedValue);
   const dispatch = useAppDispatch();
 
-  console.log(typeOf (state.tweets["tweet01"]))
-
-  // loadDataイベントは、コンポーネントのレンター前にセットされていないといけない
+  // loadDataイベントは、コンポーネントのレンダー前にセットされていないといけない
   useEffect(() => {
     dispatch(loadData())
   },[]);
@@ -39,10 +20,11 @@ export default function TimeLine() {
   return (
     <div>
       <ul>
-      {Object.keys(state.tweets).map((key) => {
+      {Object.entries(state.tweets).map(([key, value]) => {
         return  (
-            <li>
-            User Name: {state.tweets}
+            <li key={key}>
+            <p>User Name: {value.displayName}</p>
+            <p>{value.message}</p>
             {/*--<p>投稿画像</p>--*/}
             </li>
           )
