@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { Dispatch } from 'redux'
 import { RootState } from 'app/store'
 import { timeout } from 'app/timeout'
-import { ref, child, get, onValue, onChildAdded } from "firebase/database"
+import { ref, child, get, onValue, onChildAdded, set } from "firebase/database"
 import { createUserWithEmailAndPassword  } from "firebase/auth"
 import { auth, database } from "../firebase"
 //import { fetchCount } from 'features/counter/counterAPI';
@@ -15,6 +15,11 @@ export interface UserState  {
       message: string | null
     }
   }
+}
+export interface InputVal {
+  displayName: string | null
+  message: string | null
+  uid : string | null
 }
 
 const initialState: UserState = {
@@ -34,6 +39,14 @@ export const loadData = () => (dispatch: Dispatch) => {
       const data = snapshot.val();
       dispatch(setData(data));
     });
+}
+
+export const tweetPost = (val:InputVal) => (dispatch: Dispatch)　=> {
+  set(ref(database, 'tweets/tweet' + val.uid), {
+    displayName: val.displayName,
+    message: val.message,
+    uid : val.uid,
+  })
 }
 
 // 後ほど非同期処理のactionCreatorを追加する
