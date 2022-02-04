@@ -12,13 +12,13 @@ export default function Tweet() {
 
   const dispatch = useAppDispatch();
 
-  const inputVal: InputVal = {
+  const initialVal: InputVal = {
     displayName: state.user.displayName,
     message: '',
     uid : state.user.uid,
   }
 
-  const [val, setVal] = useState(inputVal);
+  const [val, setVal] = useState(initialVal);
 
   const submit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

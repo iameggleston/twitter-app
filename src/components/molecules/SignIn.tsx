@@ -9,13 +9,13 @@ import { ErrorMessage } from '@hookform/error-message';
 
 const SignIn: React.VFC = () => {
 
-  const inputVal: FormValues = {
+  const initialVal: FormValues = {
     username: '',
     email: '',
     password: '',
   }
 
-  const [val, setVal] = useState(inputVal);
+  const [val, setVal] = useState(initialVal);
 
   const dispatch = useAppDispatch();
   
