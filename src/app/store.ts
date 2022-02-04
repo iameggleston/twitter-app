@@ -10,7 +10,13 @@ export const store = configureStore({
     feed: feedReducer,
   },
   preloadedState: load(),
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(save()),
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware({
+    // データをstateにいれておくときに、firebaseのtimestampフォーマットをそのままいれるとエラーになる
+    // 問題のあるActionを指定し回避
+    serializableCheck: {
+      ignoredActions: ['action/setUser'],
+    },
+  }).concat(save()),
   // middlewareにdefault middlewareとsave　middlewareを追加している
 });
 
