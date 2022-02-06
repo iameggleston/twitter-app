@@ -1,9 +1,8 @@
 import React, { Suspense, lazy } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { useAppSelector } from 'app/hooks';
-import { userValue, UserState } from 'redux/userSlice';
+import { userValue } from 'redux/userSlice';
 import Feed from 'components/molecules/Feed';
-import { auth } from "./firebase";
 import Spinner from 'components/atoms/Spinner';
 
 const SignIn = lazy(() => import('./components/molecules/SignIn'));
