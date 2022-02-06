@@ -1,11 +1,9 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit'
 import { Dispatch } from 'redux'
 import { RootState } from 'app/store'
 import { timeout } from 'app/timeout'
-import { ref, child, get, onValue, onChildAdded, set, push } from "firebase/database"
-import { createUserWithEmailAndPassword  } from "firebase/auth"
-import { auth, database } from "../firebase"
-//import { fetchCount } from 'features/counter/counterAPI';
+import { ref, child, onValue, set, push } from "firebase/database"
+import { database } from "../firebase"
 
 export interface UserState  {
   tweets: {
@@ -50,8 +48,6 @@ export const tweetPost = (val:InputVal) => (dispatch: Dispatch)　=> {
     uid : val.uid,
   })
 }
-
-// 後ほど非同期処理のactionCreatorを追加する
 
 export const feedSlice = createSlice({
   name: 'feed',

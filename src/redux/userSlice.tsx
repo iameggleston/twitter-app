@@ -95,8 +95,6 @@ export const userSlice = createSlice({
     setUser: (state, action) => {
       state.user.uid = action.payload.uid;
       state.user.displayName = action.payload.displayName;
-      console.log(action.payload.uid)
-      console.log(action.payload.displayName)
     },
   },
   extraReducers: (builder) => {
