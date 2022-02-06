@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { Dispatch } from 'redux'
 import { RootState } from 'app/store'
 import { timeout } from 'app/timeout'
-import { ref, child, get, onValue, onChildAdded, set } from "firebase/database"
+import { ref, child, get, onValue, onChildAdded, set, push } from "firebase/database"
 import { createUserWithEmailAndPassword  } from "firebase/auth"
 import { auth, database } from "../firebase"
 //import { fetchCount } from 'features/counter/counterAPI';
@@ -34,15 +34,17 @@ const initialState: UserState = {
 
 export const loadData = () => (dispatch: Dispatch) => {
   const dbRef = ref(database, '/tweets');
-    // Reference.get()の戻り値。
-    onValue(dbRef, (snapshot) => {
-      const data = snapshot.val();
-      dispatch(setData(data));
-    });
+  // Reference.get()の戻り値。
+  onValue(dbRef, (snapshot) => {
+    const data = snapshot.val();
+    dispatch(setData(data));
+  });
 }
 
 export const tweetPost = (val:InputVal) => (dispatch: Dispatch)　=> {
-  set(ref(database, 'tweets/tweet' + val.uid), {
+  // Get a key for a new Post.
+  const newPostKey = push(child(ref(database), '/tweets')).key;
+  set(ref(database, 'tweets/tweet' + newPostKey), {
     displayName: val.displayName,
     message: val.message,
     uid : val.uid,
