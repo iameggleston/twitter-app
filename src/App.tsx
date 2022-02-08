@@ -10,7 +10,6 @@ const SignUp = lazy(() => import('./components/molecules/SignUp'));
 
 export default function App() {
   const val = useAppSelector(userValue);
-  
 
   return (
     <div className="App">
